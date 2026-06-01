@@ -1,0 +1,243 @@
+/* ==============================
+   COMFORT SECTION — fullscreen crossfade
+   ============================== */
+
+.cs-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: #0D0D0D;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Background images — all stacked, only active is visible ---- */
+.cs-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cs-bg--active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---- Dark overlay ---- */
+.cs-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0.55) 0%,
+    rgba(13, 13, 13, 0.25) 40%,
+    rgba(13, 13, 13, 0.55) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- Title ---- */
+.cs-title {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(32px, 5vw, 62px);
+  font-weight: 200;
+  letter-spacing: clamp(6px, 1.5vw, 14px);
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: csTitleIn 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes csTitleIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ---- Play / Pause button ---- */
+.cs-play {
+  position: absolute;
+  right: 64px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s,
+              border-color 0.3s,
+              box-shadow 0.3s;
+}
+
+.cs-play:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.18);
+}
+
+.cs-play:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+/* ---- Bottom navigation — no background, pure text ---- */
+.cs-nav {
+  position: absolute;
+  bottom: 44px;
+  left: 48px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  animation: csNavIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes csNavIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cs-nav__arrows {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cs-nav__arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.cs-nav__arrow:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.cs-nav__arrow:active {
+  transform: scale(0.9);
+}
+
+/* Model list */
+.cs-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.cs-nav__list li {
+  display: flex;
+  align-items: center;
+}
+
+.cs-nav__sep {
+  display: none;
+}
+
+.cs-nav__item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 4px 0 5px;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.3s, border-color 0.3s, font-weight 0.2s;
+  white-space: nowrap;
+}
+
+.cs-nav__item--active {
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom-color: #ffffff;
+}
+
+.cs-nav__item:not(.cs-nav__item--active):hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .cs-play { right: 32px; width: 64px; height: 64px; }
+  .cs-nav  { left: 28px; bottom: 36px; }
+}
+
+@media (max-width: 768px) {
+  .cs-title { top: 48px; }
+
+  /* Play button — center on mobile */
+  .cs-play {
+    right: auto;
+    top: auto;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+  }
+  .cs-play:hover {
+    transform: translateX(-50%) scale(1.1);
+  }
+  .cs-play:active {
+    transform: translateX(-50%) scale(0.94);
+  }
+
+  /* Nav — center on mobile, show only active */
+  .cs-nav {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 130px;
+    gap: 16px;
+  }
+
+  .cs-nav__list li:not(:has(.cs-nav__item--active)) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-title { font-size: 28px; letter-spacing: 5px; top: 36px; }
+}

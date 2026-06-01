@@ -1,0 +1,123 @@
+.ab-brands {
+  width: 100%;
+  background: #ffffff;
+  padding: 64px 80px;
+}
+
+.ab-brands__title {
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 400;
+  color: #111111;
+  text-align: center;
+  margin: 0 0 48px;
+  letter-spacing: 0.5px;
+}
+
+.ab-brands__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1.5px dashed #d0d0d0;
+  border-radius: 4px;
+  padding: 36px 48px;
+  gap: 24px;
+}
+
+.ab-brands__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 16px;
+  border-right: 1px solid #e8e8e8;
+}
+
+.ab-brands__item:last-child {
+  border-right: none;
+}
+
+/* ── Li Auto ── */
+.brand-liauto {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* ── AVATR ── */
+.brand-avatr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  color: #999;
+}
+
+.brand-avatr__cn {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.brand-avatr__en {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+/* ── GEELY ── */
+.brand-geely {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+/* ── Lotus ── */
+.brand-lotus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── ZEEKR ── */
+.brand-zeekr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ab-brands {
+    padding: 48px 24px;
+  }
+
+  .ab-brands__list {
+    padding: 24px 16px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ab-brands__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .ab-brands__item {
+    border-right: none;
+    flex: 0 0 40%;
+  }
+}

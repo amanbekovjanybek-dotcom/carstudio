@@ -1,0 +1,28 @@
+.ab-quote {
+  width: 100%;
+  background: #ffffff;
+  padding: 80px 80px 80px 80px;
+  border-right: 3px solid #3b3bbf;
+}
+
+.ab-quote__text {
+  max-width: 860px;
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 300;
+  color: #111111;
+  line-height: 1.65;
+  margin: 0;
+  letter-spacing: 0.1px;
+}
+
+@media (max-width: 768px) {
+  .ab-quote {
+    padding: 52px 24px;
+    border-right: none;
+    border-left: 3px solid #3b3bbf;
+  }
+
+  .ab-quote__text {
+    font-size: 18px;
+  }
+}

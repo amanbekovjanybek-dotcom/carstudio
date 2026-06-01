@@ -1,0 +1,148 @@
+/* ==============================
+   REVIEWS SECTION — block 9
+   ============================== */
+
+.rv-section {
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: stretch;
+  padding: 96px 0 80px 0;
+  overflow: hidden;
+}
+
+/* ---- Left vertical label ---- */
+.rv-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 0 36px;
+  flex-shrink: 0;
+  gap: 20px;
+}
+
+.rv-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  user-select: none;
+}
+
+.rv-line {
+  flex: 1;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.12);
+  min-height: 60px;
+}
+
+/* ---- Main content ---- */
+.rv-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 48px;
+}
+
+/* ---- Title ---- */
+.rv-title {
+  margin: 0 0 56px 0;
+  font-size: clamp(32px, 4.5vw, 58px);
+  font-weight: 200;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+}
+
+/* ---- Swiper ---- */
+.rv-swiper {
+  width: 100%;
+}
+
+/* ---- Indicators — centered, like block 3 ---- */
+.rv-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.rv-indicator {
+  width: 50px;
+  height: 2px;
+  border: none;
+  background: #CCCCCC;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 2px;
+  transition: background 0.35s, height 0.25s;
+}
+
+.rv-indicator--active {
+  background: #00A859;
+  height: 3px;
+}
+
+/* ---- Card ---- */
+.rv-card {
+  background: #F5F5F5;
+  border-radius: 16px;
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.rv-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.rv-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.3px;
+}
+
+.rv-role {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.2px;
+}
+
+.rv-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 1.7;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .rv-section { padding: 72px 0 64px; }
+  .rv-left    { padding-left: 20px; }
+  .rv-content { padding-left: 24px; }
+  .rv-title   { margin-bottom: 40px; }
+}
+
+@media (max-width: 480px) {
+  .rv-section { padding: 56px 0 56px; }
+  .rv-left    { padding-left: 16px; }
+  .rv-content { padding-left: 16px; }
+  .rv-card    { padding: 28px 22px 24px; }
+}

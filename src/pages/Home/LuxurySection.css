@@ -1,0 +1,145 @@
+/* ==============================
+   LUXURY SECTION — block 8
+   ============================== */
+
+.ls-section {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 480px;
+  background: #0D0D0D;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ---- Background images — crossfade ---- */
+.ls-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.ls-bg--active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---- Overlay ---- */
+.ls-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,  rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 55%, transparent 100%),
+    linear-gradient(to top,    rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.08) 40%, transparent 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 25%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- Vertical label ---- */
+.ls-brand {
+  position: absolute;
+  top: 36px;
+  left: 28px;
+  z-index: 3;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  user-select: none;
+}
+
+/* ---- Text — bottom left ---- */
+.ls-text {
+  position: relative;
+  z-index: 3;
+  padding: 0 0 64px 64px;
+}
+
+.ls-title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ls-title__main {
+  font-size: clamp(28px, 4.2vw, 56px);
+  font-weight: 200;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.ls-title__sub {
+  font-size: clamp(28px, 4.2vw, 56px);
+  font-weight: 200;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+/* ---- Arrows ---- */
+.ls-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.ls-arrow--left {
+  left: 60px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.ls-arrow--right {
+  right: 60px;
+  background: #00A859;
+  box-shadow: 0 4px 16px rgba(0,168,89,0.4);
+}
+
+.ls-arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.ls-arrow--right:hover {
+  box-shadow: 0 6px 22px rgba(0,168,89,0.6);
+}
+
+.ls-arrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .ls-text  { padding: 0 0 48px 32px; }
+  .ls-arrow { width: 46px; height: 46px; }
+  .ls-arrow--left  { left: 20px; }
+  .ls-arrow--right { right: 20px; }
+  .ls-brand { left: 14px; }
+}

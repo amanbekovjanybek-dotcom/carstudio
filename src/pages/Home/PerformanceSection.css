@@ -1,0 +1,137 @@
+/* ==============================
+   PERFORMANCE SECTION — dark cinematic
+   ============================== */
+
+.ps-section {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 420px;
+  background: #0D0D0D;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ---- Background video ---- */
+.ps-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.55;
+}
+
+/* ---- Dark gradient overlay ---- */
+.ps-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,  rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 60%, transparent 100%),
+    linear-gradient(to top,    rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 45%, transparent 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 30%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- Vertical brand label ---- */
+.ps-brand {
+  position: absolute;
+  top: 40px;
+  left: 28px;
+  z-index: 3;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  user-select: none;
+}
+
+/* ---- Text block — bottom left ---- */
+.ps-text {
+  position: relative;
+  z-index: 3;
+  padding: 0 0 72px 64px;
+}
+
+.ps-title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ps-title__main {
+  font-size: clamp(32px, 5vw, 62px);
+  font-weight: 200;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.ps-title__sub {
+  font-size: clamp(24px, 3.6vw, 46px);
+  font-weight: 200;
+  color: rgba(255,255,255,0.42);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+/* ---- Play button — right center ---- */
+.ps-play {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  transition: background 0.3s, border-color 0.3s,
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ps-play:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.ps-play:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.ps-play--active {
+  background: rgba(255,255,255,0.2);
+  padding-left: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .ps-text { padding: 0 0 52px 32px; }
+  .ps-play { right: 28px; width: 50px; height: 50px; }
+  .ps-brand { left: 14px; }
+}
+
+@media (max-width: 480px) {
+  .ps-text { padding: 0 0 40px 24px; }
+  .ps-title__main { letter-spacing: 2px; }
+  .ps-title__sub  { letter-spacing: 2px; }
+}

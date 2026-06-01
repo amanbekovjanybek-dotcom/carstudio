@@ -1,0 +1,218 @@
+/* ==============================
+   DELIVERY SECTION — dotted world map
+   ============================== */
+
+.ds-section {
+  width: 100%;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0 40px;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Title ---- */
+.ds-title {
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 300;
+  color: #1A1A1A;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.5px;
+  padding: 0 40px;
+}
+
+/* ---- Map container ---- */
+.ds-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 48px;
+  overflow: visible;
+  transform: perspective(900px) rotateX(42deg);
+  transform-origin: center top;
+}
+
+.ds-map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Continent paths — hidden until inView ---- */
+.ds-continent {
+  opacity: 0;
+}
+
+.ds-continent--on {
+  animation: dsContOn 0.7s ease forwards;
+}
+
+@keyframes dsContOn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---- Location pins ---- */
+.ds-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ds-pin--on {
+  animation: pinDrop 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  pointer-events: auto;
+}
+
+@keyframes pinDrop {
+  0%   { opacity: 0; transform: translate(-50%, -180%) scale(0.4); }
+  60%  { opacity: 1; transform: translate(-50%, -92%)  scale(1.12); }
+  100% { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+}
+
+.ds-pin__wrap {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ds-pin__svg {
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.22));
+  transition: transform 0.25s ease;
+}
+
+.ds-pin__wrap:hover .ds-pin__svg {
+  transform: scale(1.18) translateY(-3px);
+}
+
+/* Tooltip */
+.ds-pin__tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15,15,15,0.88);
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.ds-pin__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(15,15,15,0.88);
+}
+
+.ds-pin__tooltip strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ds-pin__tooltip span {
+  font-size: 11px;
+  opacity: 0.72;
+}
+
+.ds-pin__wrap:hover .ds-pin__tooltip {
+  opacity: 1;
+}
+
+/* ---- Stats ---- */
+.ds-stats {
+  display: flex;
+  gap: 80px;
+  margin-top: 56px;
+  align-items: flex-start;
+}
+
+.ds-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-stat__value {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.ds-stat__label {
+  font-size: 15px;
+  color: #888;
+  text-transform: lowercase;
+  letter-spacing: 0.3px;
+}
+
+/* ---- Button ---- */
+.ds-btn {
+  margin-top: 52px;
+  padding: 16px 44px;
+  border: 1.5px solid #1A1A1A;
+  border-radius: 50px;
+  background: transparent;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 500;
+  color: #1A1A1A;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.3s, color 0.3s, transform 0.25s, box-shadow 0.3s;
+}
+
+.ds-btn:hover {
+  background: #1A1A1A;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.ds-btn:active {
+  transform: translateY(0);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .ds-map-container { width: 90%; }
+  .ds-stats { gap: 48px; }
+  .ds-stat__value { font-size: 40px; }
+}
+
+@media (max-width: 768px) {
+  .ds-section { padding: 60px 24px 60px; }
+  .ds-map-container { width: 100%; margin-top: 40px; }
+  .ds-stats { gap: 28px; flex-wrap: wrap; justify-content: center; }
+  .ds-stat__value { font-size: 36px; }
+
+  /* Hide pins 4–5 on mobile */
+  .ds-pin:nth-child(n+5) { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ds-stats { gap: 20px; }
+  .ds-stat { min-width: 40%; }
+}
