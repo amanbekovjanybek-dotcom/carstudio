@@ -11,7 +11,7 @@ import './App.css'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/carstudio/">
       <Header />
       <Routes>
         <Route path="/"             element={<Home />} />
